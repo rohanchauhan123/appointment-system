@@ -37,8 +37,5 @@ lerna-debug.log*
 .env
 .env.test
 
-# frontend
-frontend/dist
-frontend/node_modules
-frontend/.env.local
-frontend/.env
+# frontend - Exclude entire frontend for backend-only repo
+frontend/
