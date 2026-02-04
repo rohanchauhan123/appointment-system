@@ -1,0 +1,103 @@
+/**
+ * Export Page Styles
+ */
+
+.export-page {
+    padding: 2rem;
+}
+
+.export-page .page-header {
+    margin-bottom: 2rem;
+}
+
+.export-page .page-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+}
+
+.export-page .page-header p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.export-container {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 800px;
+}
+
+.export-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.export-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+}
+
+.export-card .card-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0 0 1.5rem;
+}
+
+.date-filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.export-card .form-group {
+    margin-bottom: 1rem;
+}
+
+.export-card label {
+    display: block;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.export-card input,
+.export-card textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.export-card input:focus,
+.export-card textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.export-card textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.btn-large {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .date-filters {
+        grid-template-columns: 1fr;
+    }
+}

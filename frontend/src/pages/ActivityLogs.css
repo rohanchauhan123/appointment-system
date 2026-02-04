@@ -1,0 +1,116 @@
+.activity-logs-page {
+    max-width: 1000px;
+}
+
+.logs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.log-item {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.log-header:hover {
+    background: #f8fafc;
+}
+
+.log-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.action-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.action-create {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.action-update {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.action-delete {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.agent-name {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.log-separator {
+    color: #94a3b8;
+}
+
+.appointment-info {
+    color: #64748b;
+}
+
+.log-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.log-time {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.expand-icon {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.log-details {
+    border-top: 1px solid #f1f5f9;
+    padding: 20px;
+    background: #f8fafc;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.data-section h4 {
+    margin: 0 0 12px 0;
+    font-size: 0.85rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-section pre {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 0.8rem;
+    overflow-x: auto;
+    margin: 0;
+    color: #334155;
+}
