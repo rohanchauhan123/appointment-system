@@ -41,6 +41,7 @@ import { ActivityLog } from './activity-logs/entities/activity-log.entity';
         entities: [User, Appointment, ActivityLog],
         synchronize: configService.get<string>('nodeEnv') === 'development', // Auto-sync in dev only
         logging: configService.get<string>('nodeEnv') === 'development',
+        ssl: configService.get<boolean>('database.ssl') ? { rejectUnauthorized: false } : false,
       }),
       inject: [ConfigService],
     }),
