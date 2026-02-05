@@ -35,10 +35,11 @@ async function bootstrap() {
   // Global prefix for all routes
   app.setGlobalPrefix('api');
 
-  await app.listen(port);
+  // Listen on 0.0.0.0 to accept external connections (required for Render)
+  await app.listen(port, '0.0.0.0');
 
-  logger.log(`🚀 Application is running on: http://localhost:${port}/api`);
-  logger.log(`📡 WebSocket server is running on: ws://localhost:${port}`);
+  logger.log(`🚀 Application is running on: ${await app.getUrl()}/api`);
+  logger.log(`📡 WebSocket server is initialized`);
   logger.log(`📧 Daily report scheduled for 11:30 PM`);
 }
 
