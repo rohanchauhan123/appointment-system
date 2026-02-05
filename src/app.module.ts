@@ -31,18 +31,25 @@ import { ActivityLog } from './activity-logs/entities/activity-log.entity';
     // Database
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('database.host'),
-        port: configService.get<number>('database.port'),
-        username: configService.get<string>('database.username'),
-        password: configService.get<string>('database.password'),
-        database: configService.get<string>('database.name'),
-        entities: [User, Appointment, ActivityLog],
-        synchronize: configService.get<string>('nodeEnv') === 'development', // Auto-sync in dev only
-        logging: configService.get<string>('nodeEnv') === 'development',
-        ssl: configService.get<boolean>('database.ssl') ? { rejectUnauthorized: false } : false,
-      }),
+      useFactory: (configService: ConfigService) => {
+        const host = configService.get<string>('database.host');
+        // Auto-enable SSL if connecting to Neon or if DB_SSL is set
+        const isNeon = host?.includes('neon.tech');
+        const isSslEnabled = configService.get<boolean>('database.ssl') || isNeon;
+
+        return {
+          type: 'postgres',
+          host: host,
+          port: configService.get<number>('database.port'),
+          username: configService.get<string>('database.username'),
+          password: configService.get<string>('database.password'),
+          database: configService.get<string>('database.name'),
+          entities: [User, Appointment, ActivityLog],
+          synchronize: configService.get<string>('nodeEnv') === 'development',
+          logging: configService.get<string>('nodeEnv') === 'development',
+          ssl: isSslEnabled ? { rejectUnauthorized: false } : false,
+        };
+      },
       inject: [ConfigService],
     }),
 
