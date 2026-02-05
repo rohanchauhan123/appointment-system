@@ -49,4 +49,8 @@ export class UpdateAppointmentDto {
     @IsNotEmpty({ message: 'Contact number is required' })
     @IsOptional()
     contact_number?: string;
+
+    @IsString()
+    @IsOptional()
+    agent_id?: string;
 }
