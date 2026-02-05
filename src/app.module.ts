@@ -33,9 +33,15 @@ import { ActivityLog } from './activity-logs/entities/activity-log.entity';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
         const host = configService.get<string>('database.host');
+        const dbName = configService.get<string>('database.name');
+
         // Auto-enable SSL if connecting to Neon or if DB_SSL is set
         const isNeon = host?.includes('neon.tech');
         const isSslEnabled = configService.get<boolean>('database.ssl') || isNeon;
+
+        console.log(`🔌 Database Config: Host=${host}, DB=${dbName}, SSL_Enabled=${isSslEnabled}`);
+
+        const sslConfig = isSslEnabled ? { rejectUnauthorized: false } : false;
 
         return {
           type: 'postgres',
@@ -43,11 +49,12 @@ import { ActivityLog } from './activity-logs/entities/activity-log.entity';
           port: configService.get<number>('database.port'),
           username: configService.get<string>('database.username'),
           password: configService.get<string>('database.password'),
-          database: configService.get<string>('database.name'),
+          database: dbName,
           entities: [User, Appointment, ActivityLog],
           synchronize: configService.get<string>('nodeEnv') === 'development',
           logging: configService.get<string>('nodeEnv') === 'development',
-          ssl: isSslEnabled ? { rejectUnauthorized: false } : false,
+          ssl: sslConfig,
+          extra: isSslEnabled ? { ssl: sslConfig } : undefined, // Double-ensure for some TypeORM versions
         };
       },
       inject: [ConfigService],
