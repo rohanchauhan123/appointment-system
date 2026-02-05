@@ -40,13 +40,13 @@ async function resetDatabase() {
         const userRepo = AppDataSource.getRepository(User);
 
         // Delete in order: Child -> Parent
-        await activityRepo.delete({}); // Clear logs first
+        await activityRepo.createQueryBuilder().delete().execute();
         console.log(' - Activity Logs cleared');
 
-        await appointmentRepo.delete({}); // Clear appointments
+        await appointmentRepo.createQueryBuilder().delete().execute();
         console.log(' - Appointments cleared');
 
-        await userRepo.delete({}); // Clear users (Agents/Admins)
+        await userRepo.createQueryBuilder().delete().execute();
         console.log(' - Users cleared');
 
         console.log('🌱 Seeding Admin...');
